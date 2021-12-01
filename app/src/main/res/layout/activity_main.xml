@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.MainActivity">
+
+    <TextView
+        android:id="@+id/qcTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/qc_title"
+        android:padding="10dp"
+        android:text="@string/qc_title"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/qcFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/from"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
+
+    <TextView
+        android:id="@+id/qcTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/to"
+        app:layout_constraintStart_toStartOf="@+id/fromSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/fromSpinner" />
+
+    <Spinner
+        android:id="@+id/fromSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:entries="@array/currency_codes"
+        app:layout_constraintStart_toStartOf="@+id/qcFrom"
+        app:layout_constraintTop_toBottomOf="@+id/qcFrom" />
+
+    <Spinner
+        android:id="@+id/toSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:entries="@array/currency_codes"
+        app:layout_constraintStart_toStartOf="@+id/qcTo"
+        app:layout_constraintTop_toBottomOf="@+id/qcTo" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fromSpinner"
+        app:layout_constraintStart_toEndOf="@+id/fromSpinner"
+        app:layout_constraintTop_toTopOf="@+id/fromSpinner"
+        android:inputType="numberDecimal"
+        android:autofillHints="Amount"
+        android:hint="Amount"
+        />
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/textFieldAmount"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/fromSpinner"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/fromSpinner"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/fromSpinner"-->
+<!--        >-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/editField"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+
+<!--            android:inputType="numberDecimal"-->
+<!--            android:textSize="12sp"-->
+<!--            tools:text="test" />-->
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <TextView
+        android:id="@+id/convertResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/toSpinner"
+        app:layout_constraintStart_toEndOf="@+id/toSpinner"
+        app:layout_constraintTop_toTopOf="@+id/toSpinner"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <TextView
+        android:id="@+id/conversionRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/sample_conversionRate"
+        app:layout_constraintStart_toStartOf="@+id/toSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/toSpinner"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <Button
+        android:id="@+id/convertButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Convert"
+        app:layout_constraintBottom_toBottomOf="@+id/toSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/convertResult"
+        app:layout_constraintTop_toTopOf="@+id/toSpinner" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
