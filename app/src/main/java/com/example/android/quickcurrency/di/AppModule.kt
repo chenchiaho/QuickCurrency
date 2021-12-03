@@ -4,12 +4,16 @@ import com.example.android.quickcurrency.common.Constants.BASE_URL
 import com.example.android.quickcurrency.data.CurrencyApi
 import com.example.android.quickcurrency.data.repositories.CurrencyRepository
 import com.example.android.quickcurrency.data.repositories.CurrencyRepositoryImpl
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -18,11 +22,19 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideCurrencyApi(): CurrencyApi = Retrofit.Builder()
+    fun provideApi(): CurrencyApi = Retrofit.Builder()
+        .addConverterFactory(
+            MoshiConverterFactory.create(
+                Moshi.Builder()
+                    .add(KotlinJsonAdapterFactory())
+                    .build()
+            )
+        )
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(CurrencyApi::class.java)
+
 
     @Singleton
     @Provides
