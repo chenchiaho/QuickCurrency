@@ -10,6 +10,7 @@
         android:id="@+id/qcTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/qc_title"
         android:padding="20dp"
@@ -20,7 +21,8 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/qcFrom"
@@ -88,13 +90,13 @@
         android:id="@+id/conversionRate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginStart="8dp"
         android:textColor="@color/teal_200"
         android:textStyle="italic"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@+id/toSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/toSpinner"
+        app:layout_constraintBottom_toBottomOf="@+id/toSpinner"
+        app:layout_constraintStart_toEndOf="@+id/amountField"
+        app:layout_constraintTop_toTopOf="@+id/toSpinner"
         tools:text="1 SGD = 0.73 USD"
         tools:visibility="visible" />
 
@@ -102,12 +104,13 @@
         android:id="@+id/convertButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:text="@string/convert_button"
+        app:layout_constraintBottom_toBottomOf="@+id/toSpinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toSpinner"
         app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toSpinner"
+        android:layout_marginTop="16dp"
         />
 
     <androidx.constraintlayout.widget.Guideline
@@ -115,7 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
