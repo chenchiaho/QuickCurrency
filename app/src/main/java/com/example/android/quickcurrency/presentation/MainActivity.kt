@@ -3,11 +3,15 @@ package com.example.android.quickcurrency.presentation
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import com.example.android.quickcurrency.common.CurrencyEvent
 import com.example.android.quickcurrency.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.reflect.Array.set
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -21,39 +25,45 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.toSpinner.setSelection(1)
+        val result = binding.convertResult
+        val amountField = binding.amountField
+        val fromSpin = binding.fromSpinner
+        val toSpin = binding.toSpinner
+
+        toSpin.setSelection(1)
 
         binding.convertButton.setOnClickListener {
-            viewModel.beginConversion(
-                binding.amountField.text.toString(),
-                binding.fromSpinner.selectedItem.toString(),
-                binding.toSpinner.selectedItem.toString(),
-            )
 
+            if (amountField.text.isEmpty()) { amountField.setText("1") }
+
+            viewModel.beginConversion(
+                amountField.text.toString(),
+                fromSpin.selectedItem.toString(),
+                toSpin.selectedItem.toString(),
+            )
         }
 
         binding.swapButton.setOnClickListener {
-
-            binding.fromSpinner.setSelection(binding.toSpinner.selectedItemId.toInt())
-            binding.toSpinner.setSelection(binding.fromSpinner.selectedItemId.toInt())
+            val temp = fromSpin.selectedItemId.toInt()
+            fromSpin.setSelection(toSpin.selectedItemId.toInt())
+            toSpin.setSelection(temp)
         }
 
-        viewModel.convertStatus.observe(this, Observer { event ->
+        viewModel.eventStatus.observe(this, Observer { event ->
 
             when(event) {
-                is CurrencyViewModel.CurrencyEvent.Success -> {
-                    binding.convertResult.setTextColor(Color.BLACK)
-                    binding.convertResult.text = event.result
+                is CurrencyEvent.Success -> {
+                    result.setTextColor(Color.BLACK)
+                    result.text = event.result
                     binding.conversionRate.text = event.conversionRate
-                    binding.conversionRate.isVisible = event.displayRate
+                    binding.conversionRate.isVisible = event.isRateDisplayed
                 }
-                is CurrencyViewModel.CurrencyEvent.Failed -> {
-                    binding.convertResult.setTextColor(Color.RED)
-                    binding.convertResult.text = event.err
+                is CurrencyEvent.Failed -> {
+                    result.setTextColor(Color.RED)
+                    result.text = event.err
                 }
                 else -> Unit
             }
         })
-
     }
 }

@@ -3,14 +3,13 @@ package com.example.android.quickcurrency.data.repositories
 import com.example.android.quickcurrency.common.Resource
 import com.example.android.quickcurrency.data.CurrencyApi
 import com.example.android.quickcurrency.data.models.CurrencyResponse
-import com.example.android.quickcurrency.data.models.Data
 import java.lang.Exception
 import javax.inject.Inject
 
 class CurrencyRepositoryImpl
 @Inject constructor(
     private val api: CurrencyApi
-    ): CurrencyRepository {
+) : CurrencyRepository {
 
 
     override suspend fun getCurrency(base: String): Resource<CurrencyResponse> {
