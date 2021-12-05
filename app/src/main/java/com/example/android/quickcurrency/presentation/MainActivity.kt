@@ -11,7 +11,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import com.example.android.quickcurrency.R
 import com.example.android.quickcurrency.common.CurrencyEvent
 import com.example.android.quickcurrency.databinding.ActivityMainBinding
@@ -57,9 +56,9 @@ class MainActivity : AppCompatActivity() {
             toSpin.setSelection(temp)
         }
 
-        viewModel.eventStatus.observe(this, Observer { event ->
+        viewModel.eventStatus.observe(this) { event ->
 
-            when(event) {
+            when (event) {
                 is CurrencyEvent.Success -> {
                     result.setTextColor(Color.BLACK)
                     result.text = event.result
@@ -69,11 +68,11 @@ class MainActivity : AppCompatActivity() {
                 is CurrencyEvent.Failed -> {
 
                     result.text = getString(R.string.Currency_event_failed)
-                        Log.d("OnCurrencyEventFailed", event.err)
+                    Log.d("OnCurrencyEventFailed", event.err)
                 }
                 else -> Unit
             }
-        })
+        }
     }
 
     private fun checkInternet(context: Context): Boolean {
