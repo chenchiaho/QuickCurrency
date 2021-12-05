@@ -1,17 +1,21 @@
 package com.example.android.quickcurrency.presentation
 
+import android.content.Context
 import android.graphics.Color
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.widget.TextView
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import com.example.android.quickcurrency.R
 import com.example.android.quickcurrency.common.CurrencyEvent
 import com.example.android.quickcurrency.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.reflect.Array.set
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -33,6 +37,10 @@ class MainActivity : AppCompatActivity() {
         toSpin.setSelection(1)
 
         binding.convertButton.setOnClickListener {
+
+            if (!checkInternet(this)) {
+                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show()
+            }
 
             if (amountField.text.isEmpty()) { amountField.setText("1") }
 
@@ -59,11 +67,36 @@ class MainActivity : AppCompatActivity() {
                     binding.conversionRate.isVisible = event.isRateDisplayed
                 }
                 is CurrencyEvent.Failed -> {
-                    result.setTextColor(Color.RED)
-                    result.text = event.err
+
+                    result.text = getString(R.string.Currency_event_failed)
+                        Log.d("OnCurrencyEventFailed", event.err)
                 }
                 else -> Unit
             }
         })
+    }
+
+    private fun checkInternet(context: Context): Boolean {
+
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            val network = connectivityManager.activeNetwork ?: return false
+            val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+
+            return when {
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                else -> false
+            }
+
+        } else {
+
+            @Suppress("DEPRECATION")
+            val networkInfo = connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
+        }
     }
 }
