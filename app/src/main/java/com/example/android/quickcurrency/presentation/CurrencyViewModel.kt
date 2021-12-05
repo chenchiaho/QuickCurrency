@@ -37,6 +37,7 @@ class CurrencyViewModel
 //            if (inputAmount == 0.0f || input == null) {
 //                _convertStatus.value = CurrencyEvent.Success
 //            }
+                //todo make a swap function for the base currency
 
             when ( val response = repository.getCurrency(from)) {
 
@@ -61,9 +62,12 @@ class CurrencyViewModel
         }
 
         }
+
+
     }
 
     private fun getRate(currencyCode: String, rates: Data) = when (currencyCode) {
+
             "SGD" -> rates.SGD
             "USD" -> rates.USD
             "TWD" -> rates.TWD

@@ -47,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:entries="@array/currency_codes"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="@+id/qcFrom"
         app:layout_constraintTop_toBottomOf="@+id/qcFrom" />
 
@@ -56,6 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:entries="@array/currency_codes"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="@+id/qcTo"
         app:layout_constraintTop_toBottomOf="@+id/qcTo" />
 
@@ -65,9 +67,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:autofillHints="Amount"
-        android:textSize="18sp"
         android:hint="@string/amount_field"
         android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/fromSpinner"
         app:layout_constraintStart_toEndOf="@+id/fromSpinner"
         app:layout_constraintTop_toTopOf="@+id/fromSpinner" />
@@ -110,12 +113,23 @@
         app:layout_constraintHorizontal_bias="0.85"
         />
 
+    <Button
+        android:id="@+id/swapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/swap_button"
+        app:layout_constraintBottom_toTopOf="@+id/convertButton"
+        app:layout_constraintStart_toStartOf="@+id/convertButton" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

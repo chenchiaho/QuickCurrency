@@ -6,6 +6,7 @@
     <string name="amount_field">Amount</string>
     <string name="initial_result">0.00</string>
     <string name="convert_button">Convert</string>
+    <string name="swap_button">Swap</string>
 
 
     <string-array name="currency_codes">

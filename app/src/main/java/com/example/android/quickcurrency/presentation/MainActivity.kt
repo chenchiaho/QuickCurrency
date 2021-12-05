@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -29,6 +30,12 @@ class MainActivity : AppCompatActivity() {
                 binding.toSpinner.selectedItem.toString(),
             )
 
+        }
+
+        binding.swapButton.setOnClickListener {
+
+            binding.fromSpinner.setSelection(binding.toSpinner.selectedItemId.toInt())
+            binding.toSpinner.setSelection(binding.fromSpinner.selectedItemId.toInt())
         }
 
         viewModel.convertStatus.observe(this, Observer { event ->
