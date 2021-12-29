@@ -1,9 +1,6 @@
 # QuickCurrency
 =======================
 
-I want to begin by saying thank you for reviewing this project.
-It's a great practice and I had a lot of fun building it.
-
 This App adopted MVVM architecture since it's one of the most modern and popular one, and it comes with various benefits.
 The file structure is more clean, you can easily tell which file might belong to which folder,
 it separates concerns between layers, 
@@ -19,6 +16,6 @@ so I manually added it (ex: @Json(name = "USD") var USD: Double = 1.0)
 The part that I wasn't satisfied with is that I could not find a better way to handle the long list of currency data in the viewModel 
 (for ex: "SGD" -> rates.SGD). That I needed to type them out one by one. I feel that there has to be a better way.
 
-Overall, I enjoyed building the app. Thank you so much for the time!
+Overall, I enjoyed building the app. Thank you so much for reading!
 
 Kevin
