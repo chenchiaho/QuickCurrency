@@ -8,13 +8,6 @@ and since ViewModel is life-cycle aware, it automatically helps you save and ret
 
 I used Moshi to handle and parse Json file. I chose it over Gson simply because I'm more experienced with it,
 but it did take me some time to manually handle all the data for different currencies (ex: @Json(name = "SGD") val SGD: Double).
-There seems to be a limitation for how many currency data it can receive with 1 API call, so I omitted some less known currencies in the project.
-
-And for some reason the data for USD is missing when the base_currency is USD,
-so I manually added it (ex: @Json(name = "USD") var USD: Double = 1.0)
-
-The part that I wasn't satisfied with is that I could not find a better way to handle the long list of currency data in the viewModel 
-(for ex: "SGD" -> rates.SGD). That I needed to type them out one by one. I feel that there has to be a better way.
 
 Overall, I enjoyed building the app. Thank you so much for reading!
 
