@@ -6,9 +6,6 @@ The file structure is more clean, you can easily tell which file might belong to
 it separates concerns between layers, 
 and since ViewModel is life-cycle aware, it automatically helps you save and retrieve data when turning the phone, which is convenient.
 
-I used Moshi to handle and parse Json file. I chose it over Gson simply because I'm more experienced with it,
-but it did take me some time to manually handle all the data for different currencies (ex: @Json(name = "SGD") val SGD: Double).
+I used Moshi to handle and parse Json file. I chose it over Gson simply because I'm more experienced with it.
 
 Overall, I enjoyed building the app. Thank you so much for reading!
-
-Kevin
