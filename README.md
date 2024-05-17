@@ -9,3 +9,6 @@ and since ViewModel is life-cycle aware, it automatically helps you save and ret
 I used Moshi to handle and parse Json file. I chose it over Gson simply because I'm more experienced with it.
 
 Overall, I enjoyed building the app. Thank you so much for reading!
+
+
+<img src="currency.png" alt="Currency image" width="300"/>
