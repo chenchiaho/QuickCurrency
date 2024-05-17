@@ -10,5 +10,5 @@ I used Moshi to handle and parse Json file. I chose it over Gson simply because 
 
 Overall, I enjoyed building the app. Thank you so much for reading!
 
-
+<br>
 <img src="currency.png" alt="Currency image" width="300"/>
